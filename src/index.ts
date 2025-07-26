@@ -1,5 +1,5 @@
 import DesignSystemPlugin from './plugin/design-system';
 export default DesignSystemPlugin;
+export const Plugin = DesignSystemPlugin; // 👈 named export
 
-// components
 export { default as DsButton } from './components/DsButton.vue';

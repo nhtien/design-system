@@ -5,6 +5,9 @@
   "module": "dist/my-design-system.es.js",
   "types": "dist/index.d.ts",
   "files": ["dist"],
+  "keywords": ["vue3", "design-system", "component-library"],
+  "author": "Nguyen Huu Tien",
+  "license": "MIT",
   "peerDependencies": {
     "vue": "^3.0.0"
   },
@@ -16,6 +19,7 @@
     "vite-plugin-dts": "^3.9.1"
   },
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "prepublishOnly": "npm run build"
   }
 }

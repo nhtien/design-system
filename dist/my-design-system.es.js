@@ -1,58 +1,16 @@
-import { createElementBlock as d, openBlock as m, renderSlot as _, reactive as b, defineComponent as h, inject as v, computed as l, h as p } from "vue";
-const D = (e, s) => {
-  const n = e.__vccOpts || e;
-  for (const [o, t] of s)
-    n[o] = t;
-  return n;
-}, g = {}, y = { class: "ds-button" };
-function C(e, s) {
-  return m(), d("button", y, [
-    _(e.$slots, "default", {}, void 0, !0)
+import { createElementBlock as r, openBlock as s, renderSlot as _ } from "vue";
+const d = (t, e) => {
+  const o = t.__vccOpts || t;
+  for (const [n, c] of e)
+    o[n] = c;
+  return o;
+}, a = {}, u = { class: "ds-button" };
+function f(t, e) {
+  return s(), r("button", u, [
+    _(t.$slots, "default", {}, void 0, !0)
   ]);
 }
-const E = /* @__PURE__ */ D(g, [["render", C], ["__scopeId", "data-v-ac2d53c8"]]), f = Symbol("DsThemeConfig");
-function $(e) {
-  return h({
-    name: `DsWrapper(${e.name ?? "Anonymous"})`,
-    inheritAttrs: !1,
-    setup(s, { slots: n, attrs: o }) {
-      const t = v(f), c = l(() => {
-        const a = {};
-        return t && Object.entries(t).forEach(([i, u]) => {
-          u && i !== "className" && (a[`--${S(i)}`] = u);
-        }), a;
-      }), r = l(
-        () => (t == null ? void 0 : t.className) || "ds-scope-intrepid"
-        // Default class if none provided
-      );
-      return () => p(
-        "div",
-        { class: r.value, style: c.value },
-        [p(e, { ...o }, n)]
-      );
-    }
-  });
-}
-function S(e) {
-  return e.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
-}
-function j() {
-  return {
-    DsButton: E
-    // Add more components here
-  };
-}
-const w = {
-  install(e, s) {
-    const n = b(s);
-    e.provide(f, n);
-    const o = j();
-    for (const [t, c] of Object.entries(o)) {
-      const r = $(c);
-      e.component(t, r);
-    }
-  }
-};
+const p = /* @__PURE__ */ d(a, [["render", f], ["__scopeId", "data-v-ac2d53c8"]]);
 export {
-  w as default
+  p as DsButton
 };

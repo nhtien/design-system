@@ -2,30 +2,32 @@
 
 import { App, Component, defineComponent, h, reactive, computed, inject } from 'vue';
 import DsButton from '../components/DsButton.vue';
-import '../styles/ds-scope.css'; // ✅ This imports the default global CSS for scoped wrapper (optional but recommended)
+import '../styles/ds-scope.css'; // ✅ Optional: Global fallback styles for design-system wrapper
 
-// Key used to provide/inject theme config into all components
+// 🔑 Provide/inject key for theme configuration
 export const DS_THEME_KEY = Symbol('DsThemeConfig');
 
-// Theme configuration interface with optional CSS variables
+// 🧩 Interface for theme configuration
+// - Used to dynamically apply CSS variables to the wrapper
 export interface DsTheme {
-    fontFamily?: string;
-    primaryColor?: string;
-    borderRadius?: string;
-    textColor?: string; // ✅ Match the --text-color variable in CSS
-    className?: string; // ✅ Allows overriding the wrapper's CSS class
-    [key: string]: string | undefined;
+    fontFamily?: string;     // Controls --font-family
+    primaryColor?: string;   // Controls --primary-color
+    borderRadius?: string;   // Controls --border-radius
+    textColor?: string;      // Controls --text-color
+    className?: string;      // Optional: override wrapper class (default is 'ds-scope-intrepid')
+    [key: string]: string | undefined; // Allow any custom variable
 }
 
-// Higher-order component (HOC) to wrap each DS component with a <div> that applies CSS variables
+// 🎁 Higher-order function to wrap a component with a <div>
+// - This wrapper injects theme styles and classes
 function withDsWrapper(WrappedComponent: Component) {
     return defineComponent({
         name: `DsWrapper(${WrappedComponent.name ?? 'Anonymous'})`,
-        inheritAttrs: false,
+        inheritAttrs: false, // Prevent passing attributes to outer <div> unnecessarily
         setup(props, { slots, attrs }) {
-            const theme = inject<DsTheme>(DS_THEME_KEY); // Inject the provided theme config
+            const theme = inject<DsTheme>(DS_THEME_KEY); // ⛳ Inject theme config from parent app
 
-            // Convert theme config into CSS variables
+            // 🎨 Convert theme config to CSS variables like --font-family, --primary-color, etc.
             const cssVars = computed(() => {
                 const style: Record<string, string> = {};
                 if (theme) {
@@ -38,12 +40,12 @@ function withDsWrapper(WrappedComponent: Component) {
                 return style;
             });
 
-            // Determine which class name to apply to the wrapper div
+            // 📦 Wrapper CSS class: can be overridden or defaults to 'ds-scope-intrepid'
             const wrapperClass = computed(() =>
-                theme?.className || 'ds-scope-intrepid' // Default class if none provided
+                theme?.className || 'ds-scope-intrepid'
             );
 
-            // Render wrapped component inside the scoped div with CSS variables applied
+            // 🧱 Render the wrapper <div> with styles and the original component inside
             return () =>
                 h(
                     'div',
@@ -54,29 +56,31 @@ function withDsWrapper(WrappedComponent: Component) {
     });
 }
 
-// Utility: Convert camelCase to kebab-case (used for CSS variable names)
+// 🧰 Helper function: Convert camelCase → kebab-case for CSS variable names
 function kebabCase(str: string) {
     return str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-// Load all available DS components manually (can be automated later)
+// 🏗️ Manually register all design system components here
 function loadComponents(): Record<string, Component> {
     return {
         DsButton,
-        // Add more components here
+        // 🔜 Add more components like DsInput, DsCard, etc.
     };
 }
 
-// Vue plugin installer
+// 🔌 Main plugin entry point (used with app.use(DesignSystemPlugin))
 export default {
     install(app: App, config: DsTheme) {
-        const theme = reactive(config); // Make theme reactive
-        app.provide(DS_THEME_KEY, theme); // Provide theme for injection into each wrapped component
+        // 🎯 Make theme reactive and available to all components
+        const theme = reactive(config);
+        app.provide(DS_THEME_KEY, theme);
 
+        // 📦 Register all design system components globally with theme wrapper
         const components = loadComponents();
         for (const [name, comp] of Object.entries(components)) {
-            const Wrapped = withDsWrapper(comp); // Wrap each component
-            app.component(name, Wrapped); // Register component with wrapper
+            const Wrapped = withDsWrapper(comp); // 👕 Auto-wrap each component with theme support
+            app.component(name, Wrapped); // 🏷️ Register as global component (e.g., <DsButton>)
         }
     },
 };

@@ -20,7 +20,6 @@
   },
   "scripts": {
     "build": "vite build",
-    "prepare": "vite build",
     "prepublishOnly": "npm run build"
   }
 }

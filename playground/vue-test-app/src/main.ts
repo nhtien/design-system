@@ -1,14 +1,14 @@
 import { createApp } from 'vue'
-import './style.css'
+//import './style.css'
 import App from './App.vue'
 import DesignSystemPlugin from '@ds/plugin/design-system'
 
 createApp(App)
     .use(DesignSystemPlugin, {
-     /*   fontFamily: "'Roboto', sans-serif",
-        textColor: '#222',*/
+        fontFamily: "'Roboto', sans-serif",
+        textColor: '#8f1647',
         primaryColor: '#2a9d8f',
         borderRadius: '8px',
-        className: 'ds-scope-intrepid' // optional
+        //className: 'ds-scope-intrepid' // optional
     })
     .mount('#app')

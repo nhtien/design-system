@@ -4,19 +4,26 @@
   "main": "dist/my-design-system.umd.js",
   "module": "dist/my-design-system.es.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
-  "keywords": ["vue3", "design-system", "component-library"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "vue3",
+    "design-system",
+    "component-library"
+  ],
   "author": "Nguyen Huu Tien",
   "license": "MIT",
   "peerDependencies": {
     "vue": "^3.0.0"
   },
   "devDependencies": {
-    "vue": "^3.2.0",
-    "vite": "^6.3.5",
-    "typescript": "^5.8.3",
     "@vitejs/plugin-vue": "^5.2.4",
-    "vite-plugin-dts": "^4.5.4"
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.2.0"
   },
   "scripts": {
     "build": "vite build",

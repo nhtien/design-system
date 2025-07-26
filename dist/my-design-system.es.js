@@ -1,3 +1,4 @@
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('.ds-button[data-v-ac2d53c8]{background-color:#42b883}.ds-scope-intrepid{font-family:var(--font-family, "Inter", sans-serif)!important;color:var(--text-color, #1f2937)!important;display:inline-block!important}')),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
 import { createElementBlock as d, openBlock as m, renderSlot as _, reactive as b, defineComponent as h, inject as v, computed as l, h as p } from "vue";
 const D = (e, s) => {
   const n = e.__vccOpts || e;

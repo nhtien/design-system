@@ -1,4 +1,4 @@
-import { App } from 'vue';
+import { App, Component } from 'vue';
 export declare const DS_THEME_KEY: unique symbol;
 export interface DsTheme {
     fontFamily?: string;
@@ -12,3 +12,4 @@ declare const _default: {
     install(app: App, config: DsTheme): void;
 };
 export default _default;
+export declare function wrapComponentWithTheme(comp: Component): Component;

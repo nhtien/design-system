@@ -1,5 +1,5 @@
 {
-  "name": "my-design-system",
+  "name": "intrepid-design-system",
   "version": "1.0.0",
   "main": "dist/my-design-system.umd.js",
   "module": "dist/my-design-system.es.js",

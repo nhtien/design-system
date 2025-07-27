@@ -12,7 +12,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: 'src/index.ts',
-            name: 'MyDesignSystem',
+            name: 'IntrepidDesignSystem',
             fileName: (format) => `my-design-system.${format}.js`,
         },
         rollupOptions: {

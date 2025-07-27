@@ -1,4 +1,4 @@
-(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('.ds-scope-intrepid{font-family:var(--font-family, "Inter", sans-serif)!important;color:var(--text-color, #1f2937)!important;display:inline-block!important}.ds-button[data-v-ac2d53c8]{background-color:#42b883}')),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
+(function(){"use strict";try{if(typeof document<"u"){var t=document.createElement("style");t.appendChild(document.createTextNode('.ds-scope-intrepid{font-family:var(--font-family, "Inter", sans-serif)!important;color:var(--text-color, #1f2937)!important}.ds-button[data-v-ac2d53c8]{background-color:#42b883}')),document.head.appendChild(t)}}catch(e){console.error("vite-plugin-css-injected-by-js",e)}})();
 import { createElementBlock as _, openBlock as b, renderSlot as h, defineComponent as D, inject as g, computed as u, h as l, reactive as j } from "vue";
 const y = (t, e) => {
   const o = t.__vccOpts || t;

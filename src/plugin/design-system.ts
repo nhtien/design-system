@@ -1,6 +1,6 @@
 import { App, Component, defineComponent, h, reactive, computed, inject } from 'vue';
-import DsButton from '../components/DsButton.vue';
 import '../styles/ds-scope.css'; // Optional: Global fallback styles for design-system wrapper
+import * as rawComponents from '../components';
 
 // Provide/inject key for theme configuration
 export const DS_THEME_KEY = Symbol('DsThemeConfig');
@@ -62,7 +62,7 @@ function kebabCase(str: string) {
 // Manually register all design system components here
 function loadComponents(): Record<string, Component> {
     return {
-        DsButton,
+        DsButton: rawComponents.DsButton,
         // 🔜 Add more components like DsInput, DsCard, etc.
     };
 }
@@ -77,8 +77,8 @@ export default {
         // Register all design system components globally with theme wrapper
         const components = loadComponents();
         for (const [name, comp] of Object.entries(components)) {
-            const Wrapped = withDsWrapper(comp); // 👕 Auto-wrap each component with theme support
-            app.component(name, Wrapped); // Register as global component (e.g., <DsButton>)
+            const Wrapped = withDsWrapper(comp);
+            app.component(name, Wrapped);
         }
     },
 };

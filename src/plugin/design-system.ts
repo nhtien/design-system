@@ -61,11 +61,18 @@ function kebabCase(str: string) {
 
 // Manually register all design system components here
 function loadComponents(): Record<string, Component> {
-    return {
-        DsButton: rawComponents.DsButton,
-        // 🔜 Add more components like DsInput, DsCard, etc.
-    };
+    const result: Record<string, Component> = {};
+
+    for (const [name, comp] of Object.entries(rawComponents)) {
+        // 💡 Only add components that start with "Ds"
+        if (name.startsWith('Ds')) {
+            result[name] = comp;
+        }
+    }
+
+    return result;
 }
+
 
 // 🔌 Main plugin entry point (used with app.use(DesignSystemPlugin))
 export default {
